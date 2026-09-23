@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+backend/node_modules/
+frontend/node_modules/
+chaincode/record-contract/node_modules/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+backend/.env
+frontend/.env
+
+# Uploads and generated files
+uploads/
+backend/uploads/
+frontend/dist/
+dist/
+coverage/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS and editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Fabric generated artifacts
+chaincode/**/package-lock.json
+*.tar.gz
+

@@ -1,0 +1,14 @@
+{
+  "name": "public-records-chaincode",
+  "version": "1.0.0",
+  "description": "Hyperledger Fabric chaincode for public record hash anchoring",
+  "main": "index.js",
+  "scripts": {
+    "start": "fabric-chaincode-node start"
+  },
+  "dependencies": {
+    "fabric-contract-api": "^2.5.7",
+    "fabric-shim": "^2.5.7"
+  }
+}
+

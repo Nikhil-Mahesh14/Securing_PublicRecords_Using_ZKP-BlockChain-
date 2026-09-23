@@ -1,0 +1,47 @@
+services:
+  mongo:
+    image: mongo:7
+    container_name: secure-records-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  backend:
+    build:
+      context: ./backend
+    container_name: secure-records-api
+    restart: unless-stopped
+    depends_on:
+      - mongo
+    ports:
+      - "5000:5000"
+    environment:
+      NODE_ENV: production
+      PORT: 5000
+      MONGO_URI: mongodb://mongo:27017/secure_public_records
+      JWT_SECRET: change-this-secret-in-production
+      JWT_EXPIRES_IN: 1d
+      SEED_DEMO_USERS: "true"
+      UPLOAD_DIR: uploads
+      FABRIC_CHANNEL_NAME: records-channel
+      FABRIC_CHAINCODE_NAME: public-records
+    volumes:
+      - backend-uploads:/app/uploads
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: http://localhost:5000
+    container_name: secure-records-web
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "5173:80"
+
+volumes:
+  mongo-data:
+  backend-uploads:

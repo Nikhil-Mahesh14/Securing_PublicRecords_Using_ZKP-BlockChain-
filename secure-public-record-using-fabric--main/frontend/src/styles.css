@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: #111827;
+  background: #f3f7fb;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+.glass {
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.68));
+  box-shadow: 0 24px 70px rgba(17, 24, 39, 0.12);
+  backdrop-filter: blur(20px);
+}
+
+.app-shell {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.32) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.32) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+
+.app-shell::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(135deg, rgba(243, 247, 251, 0.8), rgba(236, 253, 245, 0.72)),
+    url("https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&w=1800&q=80");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.34;
+  filter: saturate(1.12) contrast(1.06);
+}
+
+.colored-panel {
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.84), rgba(236, 253, 245, 0.76)),
+    radial-gradient(circle at 0% 0%, rgba(0, 168, 132, 0.14), transparent 34%),
+    radial-gradient(circle at 100% 0%, rgba(124, 58, 237, 0.12), transparent 30%);
+  box-shadow: 0 22px 60px rgba(17, 24, 39, 0.12);
+  backdrop-filter: blur(18px);
+}
+
+.chart-panel {
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(248, 250, 252, 0.8)),
+    radial-gradient(circle at 12% 15%, rgba(249, 115, 91, 0.12), transparent 32%);
+  box-shadow: 0 22px 60px rgba(17, 24, 39, 0.11);
+  backdrop-filter: blur(18px);
+}
+
+.performance-stage {
+  min-height: 560px;
+  overflow: auto;
+  background:
+    linear-gradient(145deg, rgba(15, 23, 42, 0.08), rgba(236, 253, 245, 0.34)),
+    url("https://images.unsplash.com/photo-1640340434855-6084b1f4901c?auto=format&fit=crop&w=1600&q=80");
+  background-size: cover;
+  background-position: center;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5), 0 22px 60px rgba(17, 24, 39, 0.12);
+}
+
+.stat-card,
+.security-card,
+.colored-panel,
+.chart-panel {
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::after,
+.security-card::after,
+.colored-panel::after,
+.chart-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+  transform: translateX(-120%);
+  animation: sheen 6s ease-in-out infinite;
+}
+
+.security-card {
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(245, 243, 255, 0.78)),
+    radial-gradient(circle at 100% 0%, rgba(124, 58, 237, 0.18), transparent 32%),
+    radial-gradient(circle at 0% 100%, rgba(0, 168, 132, 0.12), transparent 32%);
+  box-shadow: 0 22px 60px rgba(17, 24, 39, 0.12);
+}
+
+.welcome-card {
+  animation: floatIn 700ms ease both;
+}
+
+.welcome-card:nth-child(2) {
+  transform: translateX(24px);
+}
+
+.welcome-card:nth-child(3) {
+  transform: translateX(48px);
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #eef1f6 25%, #f8fafc 38%, #eef1f6 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 100% 0; }
+  100% { background-position: 0 0; }
+}
+
+@keyframes floatIn {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes sheen {
+  0%, 55% {
+    transform: translateX(-120%);
+  }
+  75%, 100% {
+    transform: translateX(120%);
+  }
+}
+
+@media (max-width: 1024px) {
+  .welcome-card:nth-child(2),
+  .welcome-card:nth-child(3) {
+    transform: none;
+  }
+}
